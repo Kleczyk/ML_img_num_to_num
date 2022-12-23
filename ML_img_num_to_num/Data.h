@@ -2,7 +2,7 @@
 
 #include <vector>
 #include "stdint.h"
-#include "stdio.h"
+#include <iostream>
 
 class Data
 {
@@ -10,6 +10,8 @@ class Data
 	uint8_t label;
 	int enum_label;
 public:
+	Data();
+	~Data();
 	void set_feature_vector(std::vector<uint8_t>* vec);
 	void set_label_D(uint8_t lab);
 	void set_enum_label(int enume_lab);

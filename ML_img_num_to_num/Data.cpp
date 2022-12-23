@@ -1,5 +1,16 @@
 #include "Data.h"
 
+Data::Data()
+{
+	feature_vector = new std::vector<uint8_t>;
+
+}
+
+Data::~Data()
+{
+
+}
+
 void Data::set_feature_vector(std::vector<uint8_t>* vec)
 {
 	feature_vector = vec;
@@ -38,8 +49,4 @@ std::vector<uint8_t>* Data::get_feature_vector()
 void Data::append_fvector(uint8_t val)
 {
 	feature_vector->push_back(val);
-
-
-
-
 }
