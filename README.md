@@ -1,1 +1,1 @@
-# AI które będzie zajebiste i zdąże go zrobić w 1,5 tyg jebać PRZ
+# AI które będzie zajebiste bo zamienia obrazki w .BMP na których jest napisana liczba na normalną liczbę woooooooooooo i zdąże go zrobić w 1,5 tyg jebać PRZ
