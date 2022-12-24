@@ -149,6 +149,11 @@ void Data_hendler::split_data()
 
 		}
 	}
+	std::cout << "size of trening data " << trening_data->size() << std::endl;
+	std::cout << "size of test data " << test_data->size() << std::endl;
+	std::cout << "size of validaction data " << validaction_data->size() << std::endl;
+
+
 }
 
 void Data_hendler::count_classes()
