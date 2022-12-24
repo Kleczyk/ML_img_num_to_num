@@ -4,6 +4,7 @@
 #include "Data.h"
 #include <string>
 #include <map>
+#include <unordered_set>
  
 class Data_hendler
 {

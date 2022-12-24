@@ -1,7 +1,7 @@
 #include "Data_hendler.h"
 #pragma warning(disable : 4996)
 
-Data_hendler::Data_hendler()
+Data_hendler::Data_hendler():feature_vector_size(0),num_class(0)
 {
 	data_array = new std::vector<Data*>;
 	test_data = new std::vector<Data*>;
@@ -33,7 +33,7 @@ void Data_hendler::read_feature_vector(const std::string path)
 			}
 
 		}
-		std::cout << "succesfull load label" << std::endl; 
+		std::cout << "succesfull load begin img" << std::endl; 
 		int img_size= hendler[2] * hendler[3];
 		for (int i = 0; i < (int)hendler[1]; i++)
 		{
@@ -52,6 +52,7 @@ void Data_hendler::read_feature_vector(const std::string path)
 					exit(1);
 				}
 			}
+			data_array->push_back(d);
 		}
 		std::cout << "successfully Read and store "<< data_array->size()<< "vectors " << std::endl;
 	}
@@ -60,14 +61,94 @@ void Data_hendler::read_feature_vector(const std::string path)
 		std::cout << "this file does't exitst" << std::endl;
 		exit(1);
 	}
-}
+} //odczytuje z pliku liczbê rozmiar zdj i wartoœci poszczególnych pikseli i  tworzy obiekty typu Data uzupie³niaj¹c jest danymi
 
 void Data_hendler::read_feature_labels(std::string path)
 {
+	uint32_t hendler[2];
+	unsigned char co[2];
+	FILE* f = fopen(path.c_str(), "r");
+	if (f)
+	{
+		for (int i = 0; i < 2; i++)
+		{
+			if (fread(co, sizeof(co), 1, f))
+			{
+				hendler[i] = convert_to_little_endian(co);
+			}
+
+		}
+		std::cout << "succesfull load begin label" << std::endl;
+
+		for (int i = 0; i < (int)hendler[1]; i++)
+		{
+			uint8_t c[1];
+			if(fread( c, sizeof(co),1,f))
+			{
+				data_array->at(i)->set_label_D(c[0]);
+			}
+			else
+			{
+				std::cout << "wrong Reading form FILE" << std::endl;
+				exit(1);
+			}
+		}
+		std::cout << "successfully Read and store labels" << data_array->size() << std::endl;		
+	}
+	else
+	{
+		std::cout << "this file does't exitst" << std::endl;
+		exit(1);
+	}
 }
 
 void Data_hendler::split_data()
 {
+	std::unordered_set<int> used_indxs;
+	int size_trening = data_array->size() * TRAIN_SET_PERCENT;
+	int size_test = data_array->size() * TEST_SET_PERCENT;
+	int size_validaction = data_array->size() * VALIDACTION_SET_PERCENT;
+	 
+	//trenin data
+	int i = 0;
+	while (i < size_trening)
+	{
+		int rand_index = rand() % data_array->size();
+		if (used_indxs.find(rand_index) == used_indxs.end())
+		{
+			trening_data->push_back(data_array->at(rand_index));
+			used_indxs.insert(rand_index);
+			i++;
+			
+		}
+	}
+	//test data
+	i = 0;
+	while (i < size_test)
+	{
+		int rand_index = rand() % data_array->size();
+		if (used_indxs.find(rand_index) == used_indxs.end())
+		{
+			test_data->push_back(data_array->at(rand_index));
+			used_indxs.insert(rand_index);
+			i++;
+
+		}
+	}
+
+	//Validaction data
+	i = 0;
+	while (i < size_validaction)
+	{
+		int rand_index = rand() % data_array->size();
+		if (used_indxs.find(rand_index) == used_indxs.end())
+		{
+			validaction_data->push_back(data_array->at(rand_index));
+			used_indxs.insert(rand_index);
+			i++;
+
+		}
+	}
 }
 
 void Data_hendler::count_classes()
