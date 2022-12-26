@@ -158,24 +158,41 @@ void Data_hendler::split_data()
 
 void Data_hendler::count_classes()
 {
+	int count = 0;
+	
+	for (int i = 0; i < data_array->size(); i++)
+	{
+		if (map_class.find(data_array->at(i)->get_label()) == map_class.end())
+		{
+			map_class.insert(data_array->at(i)->get_enum_label(), count);
+			count++;
+		}
+
+	}
+	num_class = count;
+	std::cout << "succeesfull make num_class " << num_class << std::endl;
 }
 
 uint32_t Data_hendler::convert_to_little_endian(const unsigned char* bytes)
 {
-	return uint32_t();
+	return (uint32_t)((bytes[0] << 24) |
+						(bytes[1] << 16) |
+						(bytes[2] << 14) |
+						(bytes[3]));
 }
 
 std::vector<Data*>* Data_hendler::get_trening_data()
 {
-	return nullptr;
+	
+	return trening_data;
 }
 
 std::vector<Data*>* Data_hendler::get_test_data()
 {
-	return nullptr;
+	return test_data;
 }
 
 std::vector<Data*>* Data_hendler::get_validaction_data()
 {
-	return nullptr;
+	return validaction_data;
 }
