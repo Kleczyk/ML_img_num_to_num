@@ -35,6 +35,13 @@ public:
 	std::vector<Data*>* get_test_data();
 	std::vector<Data*>* get_validaction_data();
 
+	void show_img_in_console();
+
+	int reverseInt(int i);
+
+	void read_mnist(std::string path);
+
+
 
 
 

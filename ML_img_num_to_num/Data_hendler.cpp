@@ -33,26 +33,48 @@ void Data_hendler::read_feature_vector(const std::string path)
 			}
 
 		}
-		std::cout << "succesfull load begin img" << std::endl; 
+		std::cout << "succesfully load begin img" << std::endl; 
+
+		std::cout << hendler[0] << std::endl;
+		std::cout << hendler[1] << std::endl;
+		std::cout << hendler[2] << std::endl;
+		std::cout << hendler[3] << std::endl;
+		
+		/*unsigned char pixel[1];
+
+		for (int i = 0; i < 1000 ; i++)
+		{
+			if (fread(pixel, sizeof(pixel), 1, f))
+			{
+				std::cout << (int)pixel[0] << " ";
+			}
+		}*/
+		
+
 		int img_size= hendler[2] * hendler[3];
-		for (int i = 0; i < (int)hendler[1]; i++)
+		for (int i = 0; i < hendler[1]; i++)
 		{
 			Data* d = new Data();
 			uint8_t element[1];
-			for (int j = 0; j < img_size; j++)
+
+			for (int j = 0; j < img_size ; j++)
 			{
+				
 				if (fread(element, sizeof(element), 1, f))
 				{
 					d->append_fvector(element[0]);
-
+					//std::cout << (char)element[0];
 				}
-				else
+				/*else
 				{
-					std::cout << "wrong Reading form FILE" << std::endl;
+					std::cout << "wrong reading form file" << std::endl;
 					exit(1);
-				}
+				}*/
+				
+				//std::cout << element[0] << std::endl;
 			}
 			data_array->push_back(d);
+			//std::cout << i << std::endl;
 		}
 		std::cout << "successfully Read and store "<< data_array->size()<< "vectors " << std::endl;
 	}
@@ -66,7 +88,7 @@ void Data_hendler::read_feature_vector(const std::string path)
 void Data_hendler::read_feature_labels(std::string path)
 {
 	uint32_t hendler[2];
-	unsigned char co[2];
+	unsigned char co[4];
 	FILE* f = fopen(path.c_str(), "r");
 	if (f)
 	{
@@ -78,20 +100,23 @@ void Data_hendler::read_feature_labels(std::string path)
 			}
 
 		}
-		std::cout << "succesfull load begin label" << std::endl;
-
-		for (int i = 0; i < (int)hendler[1]; i++)
+		std::cout << "succesfully load begin label" << std::endl;
+		std::cout << hendler[0] << std::endl;
+		std::cout << hendler[1] << std::endl;
+	
+		
+		for (int i = 0; i < hendler[1]; i++)
 		{
 			uint8_t c[1];
-			if(fread( c, sizeof(co),1,f))
+			if(fread( c, sizeof(c),1,f))
 			{
 				data_array->at(i)->set_label_D(c[0]);
 			}
-			else
+			/*else
 			{
-				std::cout << "wrong Reading form FILE" << std::endl;
+				std::cout << "wrong Reading form label's FILE" << std::endl;
 				exit(1);
-			}
+			}*/
 		}
 		std::cout << "successfully Read and store labels" << data_array->size() << std::endl;		
 	}
@@ -159,25 +184,27 @@ void Data_hendler::split_data()
 void Data_hendler::count_classes()
 {
 	int count = 0;
-	
-	for (int i = 0; i < data_array->size(); i++)
+
+	for (unsigned i = 0; i < data_array->size(); i++)
 	{
 		if (map_class.find(data_array->at(i)->get_label()) == map_class.end())
 		{
-			map_class.insert(data_array->at(i)->get_enum_label(), count);
+			map_class[data_array->at(i)->get_label()] = count;
+			data_array->at(i)->set_enum_label(count);
 			count++;
 		}
-
+		
 	}
 	num_class = count;
-	std::cout << "succeesfull make num_class " << num_class << std::endl;
+	std::cout << "successfully count class, is " << num_class << std::endl;
+
 }
 
 uint32_t Data_hendler::convert_to_little_endian(const unsigned char* bytes)
 {
 	return (uint32_t)((bytes[0] << 24) |
 						(bytes[1] << 16) |
-						(bytes[2] << 14) |
+						(bytes[2] << 8) |
 						(bytes[3]));
 }
 
@@ -196,3 +223,67 @@ std::vector<Data*>* Data_hendler::get_validaction_data()
 {
 	return validaction_data;
 }
+
+void Data_hendler::show_img_in_console()
+{
+	int x28=0;
+	for (int i = 0; i < 28; i++) 
+	{
+		
+		for (int j = 0; j < 28; j++)
+		{
+			uint8_t t = data_array->at(0)->get_feature_vector()->at(j+x28);
+			std::cout << t<< "O";
+		}
+		x28 += 28;
+		std::cout << std::endl;
+	}
+	
+}
+
+
+int Data_hendler::reverseInt(int i)
+{
+	unsigned char c1, c2, c3, c4;
+
+	c1 = i & 255;
+	c2 = (i >> 8) & 255;
+	c3 = (i >> 16) & 255;
+	c4 = (i >> 24) & 255;
+
+	return ((int)c1 << 24) + ((int)c2 << 16) + ((int)c3 << 8) + c4;
+}
+void Data_hendler::read_mnist(std::string path)
+{
+	std::ifstream file(path.c_str());
+	if (file.is_open())
+	{
+		int magic_number = 0;
+		int number_of_images = 0;
+		int n_rows = 0;
+		int n_cols = 0;
+		file.read((char*)&magic_number, sizeof(magic_number));
+		magic_number = reverseInt(magic_number);
+		file.read((char*)&number_of_images, sizeof(number_of_images));
+		number_of_images = reverseInt(number_of_images);
+		file.read((char*)&n_rows, sizeof(n_rows));
+		n_rows = reverseInt(n_rows);
+		file.read((char*)&n_cols, sizeof(n_cols));
+		n_cols = reverseInt(n_cols);
+		for (int i = 0; i < number_of_images; ++i)
+		{
+			for (int r = 0; r < n_rows; ++r)
+			{
+				for (int c = 0; c < n_cols; ++c)
+				{
+					unsigned char temp = 0;
+					file.read((char*)&temp, sizeof(temp));
+					std::cout << temp;
+
+				}
+			}
+		}
+		std::cout << "1";
+	}
+}
+
