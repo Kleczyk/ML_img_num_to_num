@@ -18,113 +18,151 @@ Data_hendler::~Data_hendler()
 	delete[] validaction_data;
 }
 
-void Data_hendler::read_feature_vector(const std::string path)
+void Data_hendler::read_feature_vector(const std::string& path)
 {
-	uint32_t hendler[4];
-	unsigned char co[4];
-	FILE *f = fopen(path.c_str(), "r");
-	if (f)
+	std::ifstream file(path, std::ios::binary);
+
+
+	if (!file.is_open())
 	{
-		for (int i = 0; i < 4; i++)
-		{
-			if (fread(co, sizeof(co), 1, f))
-			{
-				hendler[i] = convert_to_little_endian(co);
-			}
-
-		}
-		std::cout << "succesfully load begin img" << std::endl; 
-
-		std::cout << hendler[0] << std::endl;
-		std::cout << hendler[1] << std::endl;
-		std::cout << hendler[2] << std::endl;
-		std::cout << hendler[3] << std::endl;
-		
-		/*unsigned char pixel[1];
-
-		for (int i = 0; i < 1000 ; i++)
-		{
-			if (fread(pixel, sizeof(pixel), 1, f))
-			{
-				std::cout << (int)pixel[0] << " ";
-			}
-		}*/
-		
-
-		int img_size= hendler[2] * hendler[3];
-		for (int i = 0; i < hendler[1]; i++)
-		{
-			Data* d = new Data();
-			uint8_t element[1];
-
-			for (int j = 0; j < img_size ; j++)
-			{
-				
-				if (fread(element, sizeof(element), 1, f))
-				{
-					d->append_fvector(element[0]);
-					//std::cout << (char)element[0];
-				}
-				/*else
-				{
-					std::cout << "wrong reading form file" << std::endl;
-					exit(1);
-				}*/
-				
-				//std::cout << element[0] << std::endl;
-			}
-			data_array->push_back(d);
-			//std::cout << i << std::endl;
-		}
-		std::cout << "successfully Read and store "<< data_array->size()<< "vectors " << std::endl;
-	}
-	else
-	{
-		std::cout << "this file does't exitst" << std::endl;
+		std::cerr << "Failed to open file: " << path << std::endl;
 		exit(1);
 	}
+
+	//reading header ifnormaction
+	uint32_t header_of_file[4];
+	//heder[0] 32 bit integer  0x00000803(2051) magic number
+	//heder[1] 32 bit integer  60000            number of images
+	//heder[2] 32 bit integer  28               number of rows
+	//headr[3] 32 bit integer  28               number of columns
+
+	unsigned char word[4];
+	for (int i = 0; i < 4; i++)
+	{
+		if (file)
+		{
+			file.read((char*)word, sizeof(word));
+			header_of_file[i] = convert_to_little_endian(word);
+		}
+		else
+		{
+			std::cerr << " wrong read for file with img" << std::endl;
+			exit(1);
+		}
+	}
+	std::cout << "sucessfull read and stor heder data" << std::endl;
+	if (header_of_file[0] != 0x803)
+	{
+		std::cerr << "Invalid magic number: " << header_of_file[0] << std::endl;
+		exit(1);
+	}
+	/*std::cout << header_of_file[0] << std::endl;
+	std::cout << header_of_file[1] << std::endl;
+	std::cout << header_of_file[2] << std::endl;
+	std::cout << header_of_file[3] << std::endl;*/
+
+	// reading pixel's img
+
+	int img_size = header_of_file[2] * header_of_file[3];
+
+	for (int i = 0; i < header_of_file[1]; i++)
+	{
+		uint8_t pixel;
+		unsigned char pixel_char = 0;
+		Data* d = new Data;
+
+		for (int j = 0; j < img_size; j++)
+		{
+			if (file)
+			{
+				file.read((char*)&pixel_char, sizeof(pixel_char));
+				pixel = (uint8_t)pixel_char;
+				d->append_fvector(pixel);
+			}
+			else
+			{
+				std::cerr << " wrong read for file with img " << std::endl;
+				exit(1);
+			}
+		}
+		data_array->push_back(d); //dodaenie obrazka na koniec zbioru obrazków(data_array)
+	}
+	std::cout << "sucessfull read and stor pixl of img, " << data_array->size() << " imges" << std::endl;
+
+	
 } //odczytuje z pliku liczbê rozmiar zdj i wartoœci poszczególnych pikseli i  tworzy obiekty typu Data uzupie³niaj¹c jest danymi
 
 void Data_hendler::read_feature_labels(std::string path)
 {
-	uint32_t hendler[2];
-	unsigned char co[4];
-	FILE* f = fopen(path.c_str(), "r");
-	if (f)
-	{
-		for (int i = 0; i < 2; i++)
-		{
-			if (fread(co, sizeof(co), 1, f))
-			{
-				hendler[i] = convert_to_little_endian(co);
-			}
+	std::ifstream file(path, std::ios::binary);
 
-		}
-		std::cout << "succesfully load begin label" << std::endl;
-		std::cout << hendler[0] << std::endl;
-		std::cout << hendler[1] << std::endl;
-	
-		
-		for (int i = 0; i < hendler[1]; i++)
-		{
-			uint8_t c[1];
-			if(fread( c, sizeof(c),1,f))
-			{
-				data_array->at(i)->set_label_D(c[0]);
-			}
-			/*else
-			{
-				std::cout << "wrong Reading form label's FILE" << std::endl;
-				exit(1);
-			}*/
-		}
-		std::cout << "successfully Read and store labels" << data_array->size() << std::endl;		
-	}
-	else
+
+	if (!file.is_open())
 	{
-		std::cout << "this file does't exitst" << std::endl;
+		std::cerr << "Failed to open file: " << path << std::endl;
 		exit(1);
 	}
+
+	//reading header ifnormaction
+	uint32_t header_of_file[2];
+	//heder[0] 32 bit integer  0x00000803(2051) magic number
+	//heder[1] 32 bit integer  60000            number of images
+	
+	unsigned char word[4];
+	for (int i = 0; i < 2; i++)
+	{
+		if (file)
+		{
+			file.read((char*)word, sizeof(word));
+			header_of_file[i] = convert_to_little_endian(word);
+		}
+		else
+		{
+			std::cerr << " wrong read for file with label" << std::endl;
+			exit(1);
+		}
+	}
+	std::cout << "sucessfull read and stor heder label" << std::endl;
+	if (header_of_file[0] != 2049)
+	{
+		std::cerr << "Invalid magic number: " << header_of_file[0] << std::endl;
+		exit(1);
+	}
+	/*std::cout << header_of_file[0] << std::endl;
+	std::cout << header_of_file[1] << std::endl;
+	std::cout << header_of_file[2] << std::endl;
+	std::cout << header_of_file[3] << std::endl;*/
+
+	// reading label
+
+	
+	for (int i = 0; i < header_of_file[1]; i++)
+	{
+		uint8_t label;
+		unsigned char label_char = 0;
+		if (data_array != nullptr)
+		{
+				if (file)
+				{
+					file.read((char*)&label_char, sizeof(label_char));
+					label = (uint8_t)label_char;
+					data_array->at(i)->set_label_D(label);
+				}
+				else
+				{
+					std::cerr << " wrong read for file with labels " << std::endl;
+					exit(1);
+				}
+			
+
+		}
+		else
+		{
+			std::cerr << " ivizable read img, first read img " << std::endl;
+			exit(1);
+		}
+	}
+	std::cout << "sucessfull read and stor labels " << data_array->size() << " imges" << std::endl;
 }
 
 void Data_hendler::split_data()
@@ -200,6 +238,28 @@ void Data_hendler::count_classes()
 
 }
 
+void Data_hendler::show_img()
+{
+	int x28 = 0;
+	for (int i = 0; i < 100; i++)
+	{
+		for (int r = 0; r < 28; r++)
+		{
+			for (int c = 0; c < 28; c++)
+			{
+				std::cout << data_array->at(i)->get_feature_vector()->at(c+r*28)<< "\.";
+
+			}
+			std::cout << std::endl;
+
+		}
+		std::cout << std::endl;
+		std::cout << std::endl;
+		std::cout << std::endl;
+
+	}
+}
+
 uint32_t Data_hendler::convert_to_little_endian(const unsigned char* bytes)
 {
 	return (uint32_t)((bytes[0] << 24) |
@@ -241,7 +301,6 @@ void Data_hendler::show_img_in_console()
 	
 }
 
-
 int Data_hendler::reverseInt(int i)
 {
 	unsigned char c1, c2, c3, c4;
@@ -253,6 +312,7 @@ int Data_hendler::reverseInt(int i)
 
 	return ((int)c1 << 24) + ((int)c2 << 16) + ((int)c3 << 8) + c4;
 }
+
 void Data_hendler::read_mnist(std::string path)
 {
 	std::ifstream file(path.c_str());

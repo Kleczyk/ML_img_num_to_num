@@ -128,12 +128,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Big_data.h" />
     <ClInclude Include="Data.h" />
     <ClInclude Include="Data_hendler.h" />
+    <ClInclude Include="MNISTImage.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Big_data.cpp" />
     <ClCompile Include="Data.cpp" />
     <ClCompile Include="Data_hendler.cpp" />
+    <ClCompile Include="MNISTImage.cpp" />
     <ClCompile Include="start.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

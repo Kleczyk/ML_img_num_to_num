@@ -24,11 +24,11 @@ public:
 	Data_hendler();
 	~Data_hendler();
 
-	void read_feature_vector(std::string path);
+	void read_feature_vector(const std::string& path);
 	void read_feature_labels(std::string path);
 	void split_data(); 
 	void count_classes();
-
+	void show_img();
 	uint32_t convert_to_little_endian(const unsigned char* bytes);
 
 	std::vector<Data*>* get_trening_data();
