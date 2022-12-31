@@ -50,7 +50,7 @@ void Data_hendler::read_feature_vector(const std::string& path)
 			exit(1);
 		}
 	}
-	std::cout << "sucessfull read and stor heder data" << std::endl;
+	std::cout << "sucessfull read and store heder data" << std::endl;
 	if (header_of_file[0] != 0x803)
 	{
 		std::cerr << "Invalid magic number: " << header_of_file[0] << std::endl;
@@ -87,7 +87,7 @@ void Data_hendler::read_feature_vector(const std::string& path)
 		}
 		data_array->push_back(d); //dodaenie obrazka na koniec zbioru obrazków(data_array)
 	}
-	std::cout << "sucessfull read and stor pixl of img, " << data_array->size() << " imges" << std::endl;
+	std::cout << "sucessfull read and store pixl of img, " << data_array->size() << " imges" << std::endl;
 
 	
 } //odczytuje z pliku liczbê rozmiar zdj i wartoœci poszczególnych pikseli i  tworzy obiekty typu Data uzupie³niaj¹c jest danymi
@@ -122,7 +122,7 @@ void Data_hendler::read_feature_labels(std::string path)
 			exit(1);
 		}
 	}
-	std::cout << "sucessfull read and stor heder label" << std::endl;
+	std::cout << "sucessfull read and store heder label" << std::endl;
 	if (header_of_file[0] != 2049)
 	{
 		std::cerr << "Invalid magic number: " << header_of_file[0] << std::endl;
@@ -162,7 +162,7 @@ void Data_hendler::read_feature_labels(std::string path)
 			exit(1);
 		}
 	}
-	std::cout << "sucessfull read and stor labels " << data_array->size() << " imges" << std::endl;
+	std::cout << "sucessfull read and store labels " << data_array->size() << " imges" << std::endl;
 }
 
 void Data_hendler::split_data()
@@ -176,7 +176,9 @@ void Data_hendler::split_data()
 	int i = 0;
 	while (i < size_trening)
 	{
-		int rand_index = rand() % data_array->size();
+		
+		int rand_index = generate_random_number(0, data_array->size()-1);
+		
 		if (used_indxs.find(rand_index) == used_indxs.end())
 		{
 			trening_data->push_back(data_array->at(rand_index));
@@ -189,7 +191,7 @@ void Data_hendler::split_data()
 	i = 0;
 	while (i < size_test)
 	{
-		int rand_index = rand() % data_array->size();
+		int rand_index = generate_random_number(0, data_array->size() - 1);
 		if (used_indxs.find(rand_index) == used_indxs.end())
 		{
 			test_data->push_back(data_array->at(rand_index));
@@ -203,7 +205,7 @@ void Data_hendler::split_data()
 	i = 0;
 	while (i < size_validaction)
 	{
-		int rand_index = rand() % data_array->size();
+		int rand_index = generate_random_number(0, data_array->size() - 1);
 		if (used_indxs.find(rand_index) == used_indxs.end())
 		{
 			validaction_data->push_back(data_array->at(rand_index));
@@ -345,5 +347,14 @@ void Data_hendler::read_mnist(std::string path)
 		}
 		std::cout << "1";
 	}
+}
+
+int Data_hendler::generate_random_number(int lowerBound, int upperBound)
+{
+	std::random_device rd;  // Use a random device to seed the generator
+	std::mt19937 gen(rd());  // Use the Mersenne Twister as the generator
+	std::uniform_int_distribution<> dis(lowerBound, upperBound);  // Define the range
+
+	return dis(gen);  // Generate and return a random number
 }
 

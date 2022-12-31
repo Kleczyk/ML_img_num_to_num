@@ -5,13 +5,14 @@
 #include <string>
 #include <map>
 #include <unordered_set>
+#include <random>
  
 class Data_hendler
 {
 	std::vector<Data*>* data_array; //wskaaŸniki na wszystkie dane
-	std::vector<Data*>*	trening_data;
-	std::vector<Data*>* test_data;
-	std::vector<Data*>* validaction_data;
+	std::vector<Data*>*	trening_data;		//vektor wskaŸników na dane po u¿ysciu funkcji split_data()
+	std::vector<Data*>* test_data;			//vektor wskaŸników na dane po u¿ysciu funkcji split_data()
+	std::vector<Data*>* validaction_data;	//vektor wskaŸników na dane po u¿ysciu funkcji split_data()
 
 	int num_class;
 	int feature_vector_size;
@@ -40,6 +41,8 @@ public:
 	int reverseInt(int i);
 
 	void read_mnist(std::string path);
+
+	int generate_random_number(int lowerBound, int upperBound);
 
 
 
