@@ -227,9 +227,9 @@ void Data_hendler::count_classes()
 
 	for (unsigned i = 0; i < data_array->size(); i++)
 	{
-		if (map_class.find(data_array->at(i)->get_label()) == map_class.end())
+		if (mnist_map_class.find(data_array->at(i)->get_label()) == mnist_map_class.end())
 		{
-			map_class[data_array->at(i)->get_label()] = count;
+			mnist_map_class[data_array->at(i)->get_label()] = count;
 			data_array->at(i)->set_enum_label(count);
 			count++;
 		}
@@ -262,6 +262,45 @@ void Data_hendler::show_img()
 	}
 }
 
+void Data_hendler::read_csv(const std::string& path, std::string stop) 
+{
+	
+	num_class = 0;
+	std::ifstream file(path);
+	std::string line;
+
+	//TO DO dodaæ walidacje pliku
+	while (std::getline(file, line))
+	{
+		if (line.length() == 0) continue;
+		Data* d = new Data;
+		d->set_double_feature_vector(new std::vector<double>);
+		size_t position = 0;
+		std::string token;
+		while (position = line.find(stop) != std::string::npos)
+		{
+			token = line.substr(0, position);
+			d->append_double_fvector(std::stod(token));
+			line.erase(0, position + stop.length());
+
+		}
+		if (csv_map_class.find(line) != csv_map_class.end())
+		{
+			d->set_label_D(csv_map_class[line]);
+
+		}
+		else
+		{
+			csv_map_class[line] = num_class;
+			d->set_label_D(csv_map_class[line]);
+			num_class++;
+		}
+		data_array->push_back(d);
+
+	}
+	feature_vector_size = this->data_array->at(0)->get_double_feature_vector()->size();
+}
+
 uint32_t Data_hendler::convert_to_little_endian(const unsigned char* bytes)
 {
 	return (uint32_t)((bytes[0] << 24) |
@@ -284,6 +323,21 @@ std::vector<Data*>* Data_hendler::get_test_data()
 std::vector<Data*>* Data_hendler::get_validaction_data()
 {
 	return validaction_data;
+}
+
+int Data_hendler::get_num_class()
+{
+	return num_class;
+}
+
+int Data_hendler::get_feature_vector_size()
+{
+	return feature_vector_size;
+}
+
+std::map<uint8_t, int> Data_hendler::get_map_class()
+{
+	return mnist_map_class;
 }
 
 void Data_hendler::show_img_in_console()
@@ -315,40 +369,6 @@ int Data_hendler::reverseInt(int i)
 	return ((int)c1 << 24) + ((int)c2 << 16) + ((int)c3 << 8) + c4;
 }
 
-void Data_hendler::read_mnist(std::string path)
-{
-	std::ifstream file(path.c_str());
-	if (file.is_open())
-	{
-		int magic_number = 0;
-		int number_of_images = 0;
-		int n_rows = 0;
-		int n_cols = 0;
-		file.read((char*)&magic_number, sizeof(magic_number));
-		magic_number = reverseInt(magic_number);
-		file.read((char*)&number_of_images, sizeof(number_of_images));
-		number_of_images = reverseInt(number_of_images);
-		file.read((char*)&n_rows, sizeof(n_rows));
-		n_rows = reverseInt(n_rows);
-		file.read((char*)&n_cols, sizeof(n_cols));
-		n_cols = reverseInt(n_cols);
-		for (int i = 0; i < number_of_images; ++i)
-		{
-			for (int r = 0; r < n_rows; ++r)
-			{
-				for (int c = 0; c < n_cols; ++c)
-				{
-					unsigned char temp = 0;
-					file.read((char*)&temp, sizeof(temp));
-					std::cout << temp;
-
-				}
-			}
-		}
-		std::cout << "1";
-	}
-}
-
 int Data_hendler::generate_random_number(int lowerBound, int upperBound)
 {
 	std::random_device rd;  // Use a random device to seed the generator
@@ -357,4 +377,5 @@ int Data_hendler::generate_random_number(int lowerBound, int upperBound)
 
 	return dis(gen);  // Generate and return a random number
 }
+
 

@@ -1,6 +1,7 @@
  #include "Data.h"
 #include "Data_hendler.h"
 #include "Big_data.h"
+#include "Neuron.h"
 int main()
 {
 	/*Data_hendler* dh = new Data_hendler();

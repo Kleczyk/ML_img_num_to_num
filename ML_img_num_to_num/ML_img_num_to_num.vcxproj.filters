@@ -13,12 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Pliki nagłówkowe\layers_headers">
+      <UniqueIdentifier>{2aaa0dbd-a20c-45b6-8bec-484d714ad076}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Layers_cpp">
+      <UniqueIdentifier>{09f89630-0a45-4337-a76a-53f3851ef8d5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Data.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="Data_hendler.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
     <ClInclude Include="Big_data.h">
@@ -27,17 +30,29 @@
     <ClInclude Include="MNISTImage.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="Layer.h">
+    <ClInclude Include="Neuron.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="InputLayer.h">
+    <ClInclude Include="NeuronNetwork.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
     <ClInclude Include="HiddenLayer.h">
-      <Filter>Pliki nagłówkowe</Filter>
+      <Filter>Pliki nagłówkowe\layers_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="InputLayer.h">
+      <Filter>Pliki nagłówkowe\layers_headers</Filter>
     </ClInclude>
     <ClInclude Include="OutputLayer.h">
+      <Filter>Pliki nagłówkowe\layers_headers</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonData.h">
       <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="Data_hendler.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="Layer.h">
+      <Filter>Pliki nagłówkowe\layers_headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -56,16 +71,25 @@
     <ClCompile Include="MNISTImage.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="Layer.cpp">
+    <ClCompile Include="Neuron.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="InputLayer.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="HiddenLayer.cpp">
+    <ClCompile Include="NeuronNetwork.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
     <ClCompile Include="OutputLayer.cpp">
+      <Filter>Pliki źródłowe\Layers_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="InputLayer.cpp">
+      <Filter>Pliki źródłowe\Layers_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="HiddenLayer.cpp">
+      <Filter>Pliki źródłowe\Layers_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Layer.cpp">
+      <Filter>Pliki źródłowe\Layers_cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="CommonData.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
   </ItemGroup>
