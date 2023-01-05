@@ -6,6 +6,7 @@
 #include "InputLayer.h"
 #include "HiddenLayer.h"
 #include "OutputLayer.h"
+#include <numeric>
 
 class NeuronNetwork : public CommonData
 {

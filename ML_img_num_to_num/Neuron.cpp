@@ -19,7 +19,7 @@ void Neuron::init_Weights(int prev_layer_size)
 {
 	std::default_random_engine gen;
 	std::normal_distribution<double> distbu(0.0, 1.0);
-    for (int i = 0 ; i < prev_layer_size; i++)
+    for (int i = 0 ; i < prev_layer_size+1; i++)
     {
         weights.push_back(generateRandomDouble(-1.0, 1.0));
     }

@@ -54,6 +54,9 @@
     <ClInclude Include="Layer.h">
       <Filter>Pliki nagłówkowe\layers_headers</Filter>
     </ClInclude>
+    <ClInclude Include="CSV_data_handler.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Data.cpp">
@@ -90,6 +93,9 @@
       <Filter>Pliki źródłowe\Layers_cpp</Filter>
     </ClCompile>
     <ClCompile Include="CommonData.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="CSV_data_handler.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
   </ItemGroup>

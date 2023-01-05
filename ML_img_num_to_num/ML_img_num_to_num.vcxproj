@@ -134,6 +134,7 @@
   <ItemGroup>
     <ClInclude Include="Big_data.h" />
     <ClInclude Include="CommonData.h" />
+    <ClInclude Include="CSV_data_handler.h" />
     <ClInclude Include="Data.h" />
     <ClInclude Include="Data_hendler.h" />
     <ClInclude Include="HiddenLayer.h" />
@@ -147,6 +148,7 @@
   <ItemGroup>
     <ClCompile Include="Big_data.cpp" />
     <ClCompile Include="CommonData.cpp" />
+    <ClCompile Include="CSV_data_handler.cpp" />
     <ClCompile Include="Data.cpp" />
     <ClCompile Include="Data_hendler.cpp" />
     <ClCompile Include="HiddenLayer.cpp" />

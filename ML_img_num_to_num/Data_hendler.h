@@ -9,6 +9,7 @@
  
 class Data_hendler
 {
+protected:
 	std::vector<Data*>* data_array; //wskaaŸniki na wszystkie dane
 	std::vector<Data*>*	trening_data;		//vektor wskaŸników na dane po u¿ysciu funkcji split_data()
 	std::vector<Data*>* test_data;			//vektor wskaŸników na dane po u¿ysciu funkcji split_data()
@@ -17,7 +18,7 @@ class Data_hendler
 	int num_class;
 	int feature_vector_size;
 	std::map<uint8_t, int> mnist_map_class;
-	std::map<std::string, int> csv_map_class;
+	std::map<std::string, int> csv_map_class; 
 	////TO DO dodanie podzia³u do seterów i zainicjowaæ jee w konstruktorze 
 	const double TRAIN_SET_PERCENT = 0.75;
 	const double TEST_SET_PERCENT = 0.20;
