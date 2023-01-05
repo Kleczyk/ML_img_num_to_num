@@ -141,6 +141,7 @@
     <ClInclude Include="InputLayer.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="MNISTImage.h" />
+    <ClInclude Include="MNIST_data_handler.h" />
     <ClInclude Include="Neuron.h" />
     <ClInclude Include="NeuronNetwork.h" />
     <ClInclude Include="OutputLayer.h" />
@@ -155,6 +156,7 @@
     <ClCompile Include="InputLayer.cpp" />
     <ClCompile Include="Layer.cpp" />
     <ClCompile Include="MNISTImage.cpp" />
+    <ClCompile Include="MNIST_data_handler.cpp" />
     <ClCompile Include="Neuron.cpp" />
     <ClCompile Include="NeuronNetwork.cpp" />
     <ClCompile Include="OutputLayer.cpp" />

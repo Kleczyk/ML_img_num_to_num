@@ -17,33 +17,19 @@ protected:
 
 	int num_class;
 	int feature_vector_size;
-	std::map<uint8_t, int> mnist_map_class;
-	std::map<std::string, int> csv_map_class; 
-	////TO DO dodanie podzia³u do seterów i zainicjowaæ jee w konstruktorze 
 	const double TRAIN_SET_PERCENT = 0.75;
 	const double TEST_SET_PERCENT = 0.20;
 	const double VALIDACTION_SET_PERCENT = 0.05;
 public:
 	Data_hendler();
 	~Data_hendler();
-
-	// methods to read from MNIST file 
-	void read_feature_vector(const std::string& path);
-	void read_feature_labels(std::string path);
+	virtual void read_feature_vector(const std::string& path)=0;
+	virtual void read_feature_labels(std::string path)=0;
+	virtual void count_classes()=0;
+	void split_data();
 	void show_img();
-
-	//methods to read fom CSV
-
-	void read_csv(const std::string& path, std::string stop);
-
-
-	////TO DO zrobie nadklasy do data_hendler
-	void split_data(); 
-	void count_classes();
-	uint32_t convert_to_little_endian(const unsigned char* bytes);
 	int generate_random_number(int lowerBound, int upperBound);
-	void show_img_in_console();
-	int reverseInt(int i);
+	
 
 	//-------geters---------//
 	std::vector<Data*>* get_trening_data();
@@ -51,7 +37,7 @@ public:
 	std::vector<Data*>* get_validaction_data();
 	int get_num_class();
 	int get_feature_vector_size();
-	std::map<uint8_t, int> get_map_class();
+	
 	//----------------------//
 	
 
