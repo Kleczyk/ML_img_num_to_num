@@ -13,12 +13,12 @@ int main()
 
 
 	d = &m;
-	d->read_feature_vector("d:\\prz\\sem_3\\c++\\ml_proj\\ml_img_num_to_num\\train-images-idx3-ubyte.bin");
-	d->read_feature_labels("d:\\prz\\sem_3\\c++\\ml_proj\\ml_img_num_to_num\\train-labels.idx1-ubyte");
+	d->read_feature_vector("d:\\prz\\sem_3\\C++\\ML_proj\\ML_img_num_to_num\\data\\train-images-idx3-ubyte");
+	d->read_feature_labels("d:\\prz\\sem_3\\C++\\ML_proj\\ML_img_num_to_num\\data\\train-labels.idx1-ubyte");
     d->make_nomalized_data();
     d->split_data();
 	d->count_classes();
-    
+
 
 	/*d->read_feature_vector("d:\\prz\\sem_3\\c++\\ml_proj\\ml_img_num_to_num\\train-images-idx3-ubyte.bin");
 	d->read_feature_labels("d:\\prz\\sem_3\\c++\\ml_proj\\ml_img_num_to_num\\train-labels.idx1-ubyte");
