@@ -104,11 +104,16 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <DisableSpecificWarnings>%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -127,12 +132,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Big_data.h" />
+    <ClInclude Include="CommonData.h" />
+    <ClInclude Include="CSV_data_handler.h" />
     <ClInclude Include="Data.h" />
     <ClInclude Include="Data_hendler.h" />
+    <ClInclude Include="HiddenLayer.h" />
+    <ClInclude Include="InputLayer.h" />
+    <ClInclude Include="Layer.h" />
+    <ClInclude Include="MNISTImage.h" />
+    <ClInclude Include="MNIST_data_handler.h" />
+    <ClInclude Include="Neuron.h" />
+    <ClInclude Include="NeuronNetwork.h" />
+    <ClInclude Include="OutputLayer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Big_data.cpp" />
+    <ClCompile Include="CommonData.cpp" />
+    <ClCompile Include="CSV_data_handler.cpp" />
     <ClCompile Include="Data.cpp" />
     <ClCompile Include="Data_hendler.cpp" />
+    <ClCompile Include="HiddenLayer.cpp" />
+    <ClCompile Include="InputLayer.cpp" />
+    <ClCompile Include="Layer.cpp" />
+    <ClCompile Include="MNISTImage.cpp" />
+    <ClCompile Include="MNIST_data_handler.cpp" />
+    <ClCompile Include="Neuron.cpp" />
+    <ClCompile Include="NeuronNetwork.cpp" />
+    <ClCompile Include="OutputLayer.cpp" />
     <ClCompile Include="start.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
