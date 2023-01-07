@@ -6,6 +6,7 @@
 class CommonData
 {
 protected:
+	std::vector<Data*>* data_array;
 	std::vector<Data*>* trening_data;		//vektor wskaŸników na dane po u¿ysciu funkcji split_data()
 	std::vector<Data*>* test_data;			//vektor wskaŸników na dane po u¿ysciu funkcji split_data()
 	std::vector<Data*>* validaction_data;	//vektor wskaŸników na dane po u¿ysciu funkcji split_data()

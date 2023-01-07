@@ -1,5 +1,13 @@
 #include "MNIST_data_handler.h"
 
+MNIST_data_handler::MNIST_data_handler()
+{
+	data_array = new std::vector<Data*>;
+	test_data = new std::vector<Data*>;
+	trening_data = new std::vector<Data*>;
+	validaction_data = new std::vector<Data*>;
+}
+
 MNIST_data_handler::~MNIST_data_handler()
 {
 	delete[] data_array;
@@ -77,7 +85,7 @@ void MNIST_data_handler::read_feature_vector(const std::string& path)
 		}
 		data_array->push_back(d); //dodaenie obrazka na koniec zbioru obrazków(data_array)
 	}
-	std::cout << "sucessfull read and store pixl of img, " << data_array->size() << " imges" << std::endl;
+	std::cout << "sucessfull read and store :, " << data_array->size() << " images" << std::endl;
 
 
 }

@@ -137,4 +137,46 @@ int Data_hendler::generate_random_number(int lowerBound, int upperBound)
 	return dis(gen);  // Generate and return a random number
 }
 
+void Data_hendler::make_nomalized_data()
+{
+	std::vector<double> minV, maxV;
+
+	Data* d = data_array->at(0);
+
+	for (auto val : *d->get_feature_vector())
+	{
+		minV.push_back(val);
+		maxV.push_back(val);
+
+	}
+
+	for (int i = 0; i < data_array->size(); i++)
+	{
+		d = data_array->at(i);
+		for (int j = 0; j < d->get_feature_vector_size(); j++)
+		{
+			double val = (double)d->get_feature_vector()->at(j);
+			if (val < minV.at(j)) minV.at(j) = val;
+			if (val > maxV.at(j)) maxV.at(j) = val;
+		}
+
+	}
+	for (int i = 0; i < data_array->size(); i++)
+	{
+		data_array->at(i)->set_nomalized_feature_vector(new std::vector<double>);
+		data_array->at(i)->set_class_vector(num_class);
+		for (int j = 0 ; j < data_array->at(i)->get_feature_vector_size(); j++)
+		{
+			if (maxV.at(j) - minV.at(j) == 0) data_array->at(i)->append_nomalized_fvector(0.0);
+			else
+			{
+				data_array->at(i)->append_nomalized_fvector(
+				(double)(data_array->at(i)->get_feature_vector()->at(j) - minV.at(j)) / (maxV.at(j) - minV.at(j)));
+			}
+		}
+
+	}
+
+}
+
 

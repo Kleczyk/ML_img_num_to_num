@@ -29,6 +29,7 @@ public:
 	void split_data();
 	void show_img();
 	int generate_random_number(int lowerBound, int upperBound);
+	void make_nomalized_data();
 	
 
 	//-------geters---------//

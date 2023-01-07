@@ -16,7 +16,7 @@ public:
     std::vector<Layer*> layers;
     double learningRate;
     double testPerformance;
-    NeuronNetwork(std::vector<int> spec, int, int, double);
+    NeuronNetwork(std::vector<int> , int, int, double);
     ~NeuronNetwork();
     std::vector<double> fprop(Data* data);
     double activate(std::vector<double>, std::vector<double>); // dot product
