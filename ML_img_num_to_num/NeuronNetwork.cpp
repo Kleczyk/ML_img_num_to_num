@@ -93,7 +93,7 @@ void NeuronNetwork::bprop(Data* data)
                 Neuron* n = layer->neurons.at(j);
                 errors.push_back((double)data->get_class_vector()->at(j) - n->output);
             }
-            for (int j = 0; j < layer->neurons.size(); i++)
+            for (int j = 0; j < layer->neurons.size(); j++)
             {
                 Neuron* n = layer->neurons.at(j);
                 n->delta = errors.at(j) * this->transferDerivative(n->output); // gradnient jak zmieniæ wagi
@@ -122,9 +122,9 @@ void NeuronNetwork::updateWeights(Data* data)
                 }
                 n->weights.back() += learningRate * n->delta;
             }
-            inputs.clear();
+            
         }
-
+        inputs.clear();
 
     }
 }
@@ -197,7 +197,6 @@ void NeuronNetwork::validate()
 
         count++;
         int index = predict(data);
-        std::cout << data->get_class_vector()->size();
         if (data->get_class_vector()->at(index) == 1)
         {
             numCorrect++;

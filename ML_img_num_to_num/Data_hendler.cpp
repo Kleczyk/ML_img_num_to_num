@@ -1,7 +1,7 @@
 #include "Data_hendler.h"
 #pragma warning(disable : 4996)
 
-Data_hendler::Data_hendler():feature_vector_size(0),num_class(0)
+Data_hendler::Data_hendler():feature_vector_size(0),num_class(10)
 {
 	data_array = new std::vector<Data*>;
 	test_data = new std::vector<Data*>;
@@ -12,10 +12,10 @@ Data_hendler::Data_hendler():feature_vector_size(0),num_class(0)
 
 Data_hendler::~Data_hendler()
 {
-	delete[] data_array;
+	/*delete[] data_array;
 	delete[] test_data;
 	delete[] trening_data;
-	delete[] validaction_data;
+	delete[] validaction_data;*/
 }
 
 void Data_hendler::read_feature_vector(const std::string& path)

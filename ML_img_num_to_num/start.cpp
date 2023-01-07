@@ -27,21 +27,20 @@ int main()
 
 
 
-    std::vector<int> hiddenLayers = { 10,10,10 };
-    auto lambda = [&]() {
+    std::vector<int> hiddenLayers = { 3};
+
         NeuronNetwork* net = new NeuronNetwork(
             hiddenLayers,
             d->get_trening_data()->at(0)->get_nomalized_feature_vector()->size(),
             d->get_num_class(),
-            0.25);
+            0.3);
         net->set_trening_data(d->get_trening_data());
         net->set_test_data(d->get_test_data());
         net->set_validaction_data(d->get_validaction_data());
-        net->train(15);
+        net->train(5);
         net->validate();
         printf("Test Performance: %.3f\n", net->test());
-    };
-    lambda();
+ 
 
 
 }

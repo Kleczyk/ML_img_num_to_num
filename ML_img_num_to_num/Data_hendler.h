@@ -17,9 +17,9 @@ protected:
 
 	int num_class;
 	int feature_vector_size;
-	const double TRAIN_SET_PERCENT = 0.75;
-	const double TEST_SET_PERCENT = 0.20;
-	const double VALIDACTION_SET_PERCENT = 0.05;
+	const double TRAIN_SET_PERCENT = 0.1;
+	const double TEST_SET_PERCENT = 0.01;
+	const double VALIDACTION_SET_PERCENT = 0.01;
 public:
 	Data_hendler();
 	~Data_hendler();

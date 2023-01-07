@@ -27,7 +27,7 @@ void Data::set_class_vector(int count)
 	class_vector = new std::vector<int>;
 	for (int i = 0; i < count; i++) 
 	{
-		if (i == label)
+		if (i ==(int) label)
 		{
 			class_vector->push_back(1);
 

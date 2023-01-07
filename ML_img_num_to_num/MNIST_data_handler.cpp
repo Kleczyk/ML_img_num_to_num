@@ -10,10 +10,10 @@ MNIST_data_handler::MNIST_data_handler()
 
 MNIST_data_handler::~MNIST_data_handler()
 {
-	delete[] data_array;
+	/*delete[] data_array;
 	delete[] test_data;
 	delete[] trening_data;
-	delete[] validaction_data;
+	delete[] validaction_data;*/
 }
 
 void MNIST_data_handler::read_feature_vector(const std::string& path)
