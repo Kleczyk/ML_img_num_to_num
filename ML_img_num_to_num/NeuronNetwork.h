@@ -27,7 +27,8 @@ public:
     int predict(Data* data); // return the index of the maximum value in the output array.
     void train(int); // num iterations
     double test();
-    void validate();
+    double validate();
+    void showNetParms();
 
 //private:
 //	InputLayer* input_layer;

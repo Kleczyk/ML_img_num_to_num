@@ -160,7 +160,7 @@ void NeuronNetwork::train(int numEpochs)
             bprop(data);
             updateWeights(data);
         }
-        std::cout << "Interation epoch's: " <<i<<"Error= "<<sumError << std::endl;
+        std::cout << "Epoka nr. " <<i<< "\t suma pope³nianych b³êdów na nuronach= "<<sumError << std::endl;
 
     }
 }
@@ -185,7 +185,7 @@ double NeuronNetwork::test()
 
 }
 
-void NeuronNetwork::validate()
+double NeuronNetwork::validate()
 {
     double numCorrect = 0.0;
     double count = 0.0;
@@ -203,7 +203,19 @@ void NeuronNetwork::validate()
         }
     }
     double validPerformance = (numCorrect / count);
-    std::cout << "Validation Performance: " << validPerformance << std::endl;
+    return validPerformance;
+}
+void NeuronNetwork::showNetParms()
+{
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << "parametry sieci :" << std::endl;
+    std::cout << "iloœæ warst ukrytych " << layers.size() - 1 << std::endl;
+    for (int i = 0; i < layers.size() - 1; i++)
+    {
+        std::cout << "iloœæ neuronuw w warstwie nr." << i << " " << layers.at(i)->neurons.size() << std::endl;
+    }
+    
 }
 //{
 //    double numCorrect = 0.0;

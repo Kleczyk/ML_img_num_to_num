@@ -48,7 +48,7 @@ void MNIST_data_handler::read_feature_vector(const std::string& path)
 			exit(1);
 		}
 	}
-	std::cout << "sucessfull read and store heder data" << std::endl;
+	//std::cout << "sucessfull read and store heder data" << std::endl;
 	if (header_of_file[0] != 0x803)
 	{
 		std::cerr << "Invalid magic number: " << header_of_file[0] << std::endl;
@@ -85,7 +85,7 @@ void MNIST_data_handler::read_feature_vector(const std::string& path)
 		}
 		data_array->push_back(d); //dodaenie obrazka na koniec zbioru obrazków(data_array)
 	}
-	std::cout << "sucessfull read and store :, " << data_array->size() << " images" << std::endl;
+	//std::cout << "sucessfull read and store :, " << data_array->size() << " images" << std::endl;
 
 
 }
@@ -120,7 +120,7 @@ void MNIST_data_handler::read_feature_labels(std::string path)
 			exit(1);
 		}
 	}
-	std::cout << "sucessfull read and store heder label" << std::endl;
+	//std::cout << "sucessfull read and store heder label" << std::endl;
 	if (header_of_file[0] != 2049)
 	{
 		std::cerr << "Invalid magic number: " << header_of_file[0] << std::endl;
@@ -160,7 +160,7 @@ void MNIST_data_handler::read_feature_labels(std::string path)
 			exit(1);
 		}
 	}
-	std::cout << "sucessfull read and store labels " << data_array->size() << " imges" << std::endl;
+	//std::cout << "sucessfull read and store labels " << data_array->size() << " imges" << std::endl;
 }
 
 void MNIST_data_handler::count_classes()
@@ -178,7 +178,7 @@ void MNIST_data_handler::count_classes()
 
 	}
 	num_class = count;
-	std::cout << "successfully count class, is " << num_class << std::endl;
+	//std::cout << "successfully count class, is " << num_class << std::endl;
 
 }
 
