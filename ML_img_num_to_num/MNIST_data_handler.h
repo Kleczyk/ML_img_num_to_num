@@ -12,7 +12,7 @@ public:
 	MNIST_data_handler();
 	~MNIST_data_handler();
 
-	void read_feature_vector(const std::string& path) override;
+	void read_feature_vector(const std::string& path) ;
 	void read_feature_labels(std::string path) ;
 	void count_classes();
 	std::map<uint8_t, int> get_map_class();

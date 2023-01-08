@@ -2,12 +2,26 @@
 #include "Data_hendler.h"
 #include "CSV_data_handler.h"
 #include "MNIST_data_handler.h"
-#include "Big_data.h"
 #include "Neuron.h"
 #include "NeuronNetwork.h"
+#include "NetParameters.h"
+#include <locale.h>
+#include "menu.h"
+
+
+
 int main()
 {
-	Data_hendler *d;
+    setlocale(LC_CTYPE, "Polish");
+
+    menu m1;
+    m1.main_loop();
+
+ 
+        
+  
+
+	/*Data_hendler *d;
 	MNIST_data_handler m;
 	CSV_data_handler c;
 
@@ -18,14 +32,6 @@ int main()
     d->make_nomalized_data();
     d->split_data();
 	d->count_classes();
-    
-
-	/*d->read_feature_vector("d:\\prz\\sem_3\\c++\\ml_proj\\ml_img_num_to_num\\train-images-idx3-ubyte.bin");
-	d->read_feature_labels("d:\\prz\\sem_3\\c++\\ml_proj\\ml_img_num_to_num\\train-labels.idx1-ubyte");
-	d->split_data();*/
-
-
-
 
     std::vector<int> hiddenLayers = { 3};
 
@@ -39,8 +45,8 @@ int main()
         net->set_validaction_data(d->get_validaction_data());
         net->train(5);
         net->validate();
-        printf("Test Performance: %.3f\n", net->test());
- 
+        std::cout << net->test() << std::endl;
+ */
 
 
 }

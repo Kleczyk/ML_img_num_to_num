@@ -2,6 +2,9 @@
 #include "Data_hendler.h"
 #include "Layer.h"
 #include <numeric>
+#include <windows.h>
+#include <gdiplus.h>
+
 
 NeuronNetwork::NeuronNetwork(std::vector<int> spec, int inputSize, int numClasses, double learningRate)
 {
@@ -185,7 +188,7 @@ double NeuronNetwork::test()
 
 }
 
-void NeuronNetwork::validate()
+double NeuronNetwork::validate()
 {
     double numCorrect = 0.0;
     double count = 0.0;
@@ -203,18 +206,7 @@ void NeuronNetwork::validate()
         }
     }
     double validPerformance = (numCorrect / count);
-    std::cout << "Validation Performance: " << validPerformance << std::endl;
+    return validPerformance;
 }
-//{
-//    double numCorrect = 0.0;
-//    double count = 0.0;
-//    for (Data* data : *this->validaction_data)
-//    {
-//        count++;
-//        int index = predict(data);
-//        if (data->get_class_vector().at(index) == 1) numCorrect++;
-//    }
-//    printf("Validation Performance: %.4f\n", numCorrect / count);
-//}
 
 

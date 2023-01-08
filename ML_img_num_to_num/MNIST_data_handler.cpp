@@ -1,6 +1,6 @@
 #include "MNIST_data_handler.h"
 
-MNIST_data_handler::MNIST_data_handler()
+MNIST_data_handler::MNIST_data_handler(): Data_hendler()
 {
 	data_array = new std::vector<Data*>;
 	test_data = new std::vector<Data*>;

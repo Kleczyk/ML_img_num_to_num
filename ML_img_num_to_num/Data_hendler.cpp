@@ -18,10 +18,6 @@ Data_hendler::~Data_hendler()
 	delete[] validaction_data;*/
 }
 
-void Data_hendler::read_feature_vector(const std::string& path)
-{
-	1;
-}
 
 
 void Data_hendler::split_data()
@@ -178,5 +174,7 @@ void Data_hendler::make_nomalized_data()
 	}
 
 }
+
+
 
 
