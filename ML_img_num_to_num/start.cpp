@@ -7,18 +7,161 @@
 #include "NetParameters.h"
 #include <locale.h>
 #include "menu.h"
+#include <cstdint>
 
 
+const int BMP_HEADER_SIZE = 54;
+void readBmpHeader(const std::string& fileName)
+{
+    std::ifstream bmpFile(fileName, std::ios::binary);
+    if (!bmpFile)
+    {
+        std::cerr << "Nie uda³o siê otworzyæ pliku " << fileName << '\n';
+        exit(1);
+    }
 
+    // Odczytaj nag³ówek pliku BMP.
+    char header[BMP_HEADER_SIZE];
+    bmpFile.read(header, BMP_HEADER_SIZE);
+
+    // Odczytaj pola nag³ówka pliku BMP.
+    uint32_t fileSize = *reinterpret_cast<uint32_t*>(&header[2]);
+    int32_t width = *reinterpret_cast<int32_t*>(&header[18]);
+    int32_t height = *reinterpret_cast<int32_t*>(&header[22]);
+    uint16_t bitsPerPixel = *reinterpret_cast<uint16_t*>(&header[28]);
+    uint32_t compressionMethod = *reinterpret_cast<uint32_t*>(&header[30]);
+    uint32_t imageSize = *reinterpret_cast<uint32_t*>(&header[34]);
+
+    // Wyœwietl odczytane pola nag³ówka pliku BMP.
+    std::cout << "Wielkoœæ pliku: " << fileSize << '\n';
+    std::cout << "Szerokoœæ obrazu: " << width << '\n';
+    std::cout << "Wysokoœæ obrazu: " << height << '\n';
+    std::cout << "Liczba bitów na piksel: " << bitsPerPixel << '\n';
+    std::cout << "Metoda kompresji: " << compressionMethod << '\n';
+    std::cout << "Wielkoœæ danych obrazu: " << imageSize << '\n';
+}
+
+std::vector<uint8_t> readBmpPixelsRLE(const std::string& fileName)
+{
+    std::ifstream bmpFile(fileName, std::ios::binary);
+    if (!bmpFile)
+    {
+        std::cerr << "Nie uda³o siê otworzyæ pliku " << fileName << '\n';
+        exit(1);
+    }
+
+    // Odczytaj nag³ówek pliku BMP.
+    char header[BMP_HEADER_SIZE];
+    bmpFile.read(header, BMP_HEADER_SIZE);
+
+    // Odczytaj szerokoœæ i wysokoœæ obrazu.
+    int width = *reinterpret_cast<int*>(&header[18]);
+    int height = *reinterpret_cast<int*>(&header[22]);
+
+    // Odczytaj wartoœci pixeli i zapisz je do wektora.
+    std::vector<uint8_t> pixels(width * height);
+    int pixelIndex = 0;
+
+    while (pixelIndex < width * height)
+    {
+        // Odczytaj bajt kontrolny.
+        uint8_t controlByte = bmpFile.get();
+
+        // Jeœli bajt kontrolny jest mniejszy od 128, to oznacza to, ¿e nastêpuje ci¹g powtarzaj¹cych siê bajtów.
+        if (controlByte < 128)
+        {
+            // Odczytaj nastêpny bajt, który jest wartoœci¹ pixela.
+            uint8_t pixelValue = bmpFile.get();
+
+            // Zapisz ci¹g powtarzaj¹cych siê bajtów do wektora.
+            for (int i = 0; i < controlByte + 1; ++i)
+            {
+                pixels.push_back(pixelValue);
+                pixelIndex++;
+            }
+        }
+        // Jeœli bajt kontrolny jest równy lub wiêkszy od 128, to oznacza to, ¿e nastêpuje ci¹g ró¿nych bajtów.
+        else
+        {
+            for (int i = 0; i < controlByte - 127; ++i)
+            {
+                pixels.push_back(bmpFile.get());
+                pixelIndex++;
+            }
+        }
+    }
+
+    return pixels;
+}
+
+void displayImage(const std::vector<uint8_t>& pixels, int width, int height)
+{
+    for (int y = 0; y < height; ++y)
+    {
+        for (int x = 0; x < width; ++x)
+        {
+            std::cout << (pixels.at(y * width + x) == 0 ? ' ' : '#');
+        }
+        std::cout << '\n';
+    }
+}
 int main()
 {
     setlocale(LC_CTYPE, "Polish");
 
-    menu m1;
+    /*menu m1;
     m1.main_loop();
+        */
+  
+    //QImage image("image.jpg");
+    //std::ifstream bmpFile("D:\\prz\\sem_3\\C++\\ML_proj\\ML_img_num_to_num\\BMP Image\\B5.bmp", std::ios::binary);
+    //if (!bmpFile)
+    //{
+    //    std::cerr << "Nie uda³o siê otworzyæ pliku " << "dasd" << '\n';
+    //    exit(1);
+    //}
 
- 
+    //// Odczytaj nag³ówek pliku BMP.
+    //char header[BMP_HEADER_SIZE];
+    //char ilosc[4];
+    //bmpFile.read(ilosc, 32);
+    //char sze[2];
+    //bmpFile.read(sze, 16);
+    //char wy[2];
+    //bmpFile.read(wy, 16);
+    //char opis[2];
+    //bmpFile.read(opis, 16);
+
+    //Data_hendler* y;
+    //MNIST_data_handler m;
+    //y = &m;
+    //std::cout << m.convert_to_little_endian((uint8_t)ilosc) <<std::endl;
+    //std::cout << (int)sze << std::endl;
+    //std::cout << (int)wy << std::endl;
+    //std::cout << (int)opis << std::endl;
+    //// Odczytaj wartoœci pixeli i zapisz je do wektora.
+    //std::vector<uint8_t> pixels((int)wy * (int)sze * 3);
+    //bmpFile.read(reinterpret_cast<char*>(pixels.data()), pixels.size());
+    //
+    //for (int i =0 ; i<pixels.size() ; i+=3)
+    //{
+    //    if (i % 28 == 0) std::cout << std::endl;
+    //    int eq = (int)pixels.at(i) + (int)pixels.at(i + 1) + (int)pixels.at(i + 2);
+    //    std::cout << eq << " ";
+    //    
+    //}
+    
+
+   
+    std::vector<uint8_t> vec;
+    vec = readBmpPixelsRLE("D:\\prz\\sem_3\\C++\\ML_proj\\ML_img_num_to_num\\BMP Image\\B5.bmp");
+
         
+    for (int i = 0; i < vec.size(); i++)
+    {
+        if (i % 28 == 0)std::cout <<std:: endl; 
+        std::cout << vec.at(i);
+    }
   
 
 	/*Data_hendler *d;

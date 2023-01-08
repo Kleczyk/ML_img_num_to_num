@@ -6,6 +6,7 @@
 #include <gdiplus.h>
 
 
+
 NeuronNetwork::NeuronNetwork(std::vector<int> spec, int inputSize, int numClasses, double learningRate)
 {
     for (int i = 0; i < spec.size(); i++)
