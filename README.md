@@ -1,4 +1,4 @@
-# Obecny stan programu pozwala trenowanie i testowanie na zbiorze danych MNIST sieci neuronowej model sieci to perceptron Wielo Warstwowy funkcją aktywacji  jest funkcja pigmoidalną i błędem średnio  kwadratowym
+# Obecny stan programu pozwala trenowanie i testowanie na zbiorze danych MNIST sieci neuronowej model sieci to perceptron Wielo Warstwowy funkcją aktywacji  jest funkcja sigmoidalna.
 
 przykładowe nauka sieci neuronowej:
 parametry sieci: ukryte warstwy: (100 neuronów ), min vektor błędu 0.3 , 5 epok
