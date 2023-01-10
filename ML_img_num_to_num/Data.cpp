@@ -98,3 +98,15 @@ void Data::append_nomalized_fvector(double val)
 {
 	nomalized_feature_vector->push_back(val);
 }
+
+void Data::show_one_img()
+{
+	for (int i =0 ; i< feature_vector->size() ; i++)
+	{
+		if(i% 28==0) std::cout  << std::endl;
+		std::cout << feature_vector->at(i) << " ";
+		
+	}
+	std::cout << std::endl;
+	std::cout << "to jest : " << (int)label << std::endl; 
+}

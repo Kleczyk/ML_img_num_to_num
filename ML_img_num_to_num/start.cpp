@@ -109,9 +109,9 @@ int main()
 {
     setlocale(LC_CTYPE, "Polish");
 
-    /*menu m1;
-    m1.main_loop();
-        */
+    //menu m1;
+    //m1.main_loop();
+        
   
     //QImage image("image.jpg");
     //std::ifstream bmpFile("D:\\prz\\sem_3\\C++\\ML_proj\\ML_img_num_to_num\\BMP Image\\B5.bmp", std::ios::binary);
@@ -153,7 +153,7 @@ int main()
     
 
    
-    std::vector<uint8_t> vec;
+   /* std::vector<uint8_t> vec;
     vec = readBmpPixelsRLE("D:\\prz\\sem_3\\C++\\ML_proj\\ML_img_num_to_num\\BMP Image\\B5.bmp");
 
         
@@ -162,9 +162,9 @@ int main()
         if (i % 28 == 0)std::cout <<std:: endl; 
         std::cout << vec.at(i);
     }
-  
+ // */
 
-	/*Data_hendler *d;
+	Data_hendler *d;
 	MNIST_data_handler m;
 	CSV_data_handler c;
 
@@ -176,20 +176,54 @@ int main()
     d->split_data();
 	d->count_classes();
 
-    std::vector<int> hiddenLayers = { 3};
-
+    std::vector<int> hiddenLayers = { 1000, 500 ,100};
         NeuronNetwork* net = new NeuronNetwork(
             hiddenLayers,
             d->get_trening_data()->at(0)->get_nomalized_feature_vector()->size(),
             d->get_num_class(),
-            0.3);
+            0.4);
         net->set_trening_data(d->get_trening_data());
         net->set_test_data(d->get_test_data());
         net->set_validaction_data(d->get_validaction_data());
-        net->train(5);
-        net->validate();
-        std::cout << net->test() << std::endl;
- */
+
+
+        net->train(7);
+        const int choose_num = 500;
+        std::cout << net->layers.at(0)->neurons.size() << std::endl;
+        for (int i = 0; i < 10; i++)
+        {
+
+
+
+            d->get_trening_data()->at(choose_num+i)->show_one_img();   // pokaznie liczby 
+            std::cout << "jest to liczba: ";
+            std::cout << (int)d->get_trening_data()->at(choose_num + i)->get_label() << std::endl; // pokacznie jego labela 
+            std::cout << std::endl;
+            std::vector<double> outputs = net->fprop(d->get_test_data()->at(69));
+            std::cout << " co dostajemy z funkcji fprop: " << std::endl;
+            int u = 0;
+            for (double d : outputs)
+            {
+                std::cout <<u<<" " << d << std::endl;
+                u++;
+            }
+           /* std::cout << std::endl;
+            for (int i = 0; i < net->layers.at(1)->neurons.size(); i++)
+            {
+                std::cout << net->layers.at(1)->neurons.at(i)->output << std::endl;
+            }*/
+        }
+
+        
+
+       /* for(int i = 0; i < net->layers.at(1)->neurons.size(); i++)
+        {
+            std::cout << net->layers.at(1)->neurons.at(i)->output << std::endl;
+        }*/
+        std::cout << "test2 performace" << net->test2() << std::endl;
+        std::cout<<"validation performace" << net->validate() << std::endl;
+        std::cout<<"test performance " << net->test() << std::endl;
+ 
 
 
 }

@@ -32,6 +32,7 @@ public:
 	std::vector<int>* get_class_vector();
 	void append_fvector(uint8_t val);
 	void append_nomalized_fvector(double val);
+	void show_one_img();
 	
 
 

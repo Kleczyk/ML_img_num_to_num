@@ -34,6 +34,7 @@ public:
     void train(int); // num iterations
     double test();
     double validate();
+    double test2();
     
 
 

@@ -171,6 +171,18 @@ void NeuronNetwork::train(int numEpochs)
 
 double NeuronNetwork::test()
 {
+    /*for (Data* d : *test_data)
+    {
+        std::vector<double> outputs = fprop(d);
+        double max= outputs.at(0);
+        for (double m : outputs)
+        {
+            if (max < m) max = m;
+        }
+        if(max == )
+
+    }*/
+
     double numCorrect = 0.0;
     double count = 0.0;
     
@@ -208,6 +220,50 @@ double NeuronNetwork::validate()
     }
     double validPerformance = (numCorrect / count);
     return validPerformance;
+}
+
+double NeuronNetwork::test2()
+{
+    double counter = 0;
+    for(int m =0; m< test_data->size() ; m++)
+    {
+        Data* d = test_data->at(m);
+        std::vector<double> outputs = fprop(d);
+        double max = outputs.at(0);
+        int index = 0;
+        for (int i = 0 ; i<outputs.size(); i++)
+        {
+            if (max < outputs.at(i))
+            {
+                max = outputs.at(i);
+                index = i;
+            }
+                
+        }
+        if (index == d->get_label())
+        {
+            counter += 1.0;
+        }
+        
+        if (m < 50)
+        {
+            d->show_one_img();
+            std::cout << " max " << max << std::endl;
+            std::cout << " index " << index << std::endl;
+            std::cout << std::endl;
+            int u = 0;
+            for (double d : outputs)
+            {
+                std::cout << u << " " << d << std::endl;
+                u++;
+            }
+        }
+        
+
+    }
+    std::cout << "countr :" << counter << std::endl;
+    double performance_test = counter / test_data->size();
+     return performance_test;
 }
 
 
