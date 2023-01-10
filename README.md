@@ -16,8 +16,9 @@ parametry sieci: ukryte warstwy: (100 neuronów, 100 neuronów ), min vektor bł
 
 udało dopasować się dane testowe na poziomie 72 % 
 
-parametry sieci: ukryte warstwy: (200 neuronów ), min vektor błędu 0.4 ,  epok 15
-![image](https://user-images.githubusercontent.com/101070249/211209934-49e06853-5097-4e70-8b9b-ee8157457c11.png)
+( branch test) wyświetlenie losowego obrazka i dopasowanie odpowiedzi 
+parametry sieci: ukryte warstwy: (100 neuronów ), min vektor błędu 0.3 ,  epok 7
+![image](https://user-images.githubusercontent.com/101070249/211534089-f54fc2f3-8b0a-43fe-b5ec-1b5dade1c89f.png)
 
-udało dopasować się dane testowe na poziomie 76%
+udało dopasować się dane testowe na poziomie 80 % 
 
