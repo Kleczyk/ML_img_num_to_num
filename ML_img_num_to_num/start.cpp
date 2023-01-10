@@ -176,7 +176,7 @@ int main()
     d->split_data();
 	d->count_classes();
 
-    std::vector<int> hiddenLayers = { 1000, 500 ,100};
+    std::vector<int> hiddenLayers = { 100 };
         NeuronNetwork* net = new NeuronNetwork(
             hiddenLayers,
             d->get_trening_data()->at(0)->get_nomalized_feature_vector()->size(),
@@ -188,31 +188,38 @@ int main()
 
 
         net->train(7);
-        const int choose_num = 500;
-        std::cout << net->layers.at(0)->neurons.size() << std::endl;
+
         for (int i = 0; i < 10; i++)
         {
-
-
-
-            d->get_trening_data()->at(choose_num+i)->show_one_img();   // pokaznie liczby 
-            std::cout << "jest to liczba: ";
-            std::cout << (int)d->get_trening_data()->at(choose_num + i)->get_label() << std::endl; // pokacznie jego labela 
-            std::cout << std::endl;
-            std::vector<double> outputs = net->fprop(d->get_test_data()->at(69));
-            std::cout << " co dostajemy z funkcji fprop: " << std::endl;
-            int u = 0;
-            for (double d : outputs)
-            {
-                std::cout <<u<<" " << d << std::endl;
-                u++;
-            }
-           /* std::cout << std::endl;
-            for (int i = 0; i < net->layers.at(1)->neurons.size(); i++)
-            {
-                std::cout << net->layers.at(1)->neurons.at(i)->output << std::endl;
-            }*/
+            net->fit_example(d->get_test_data()->at(rand() % d->get_test_data()->size()));
         }
+
+
+        //const int choose_num = 500;
+        //std::cout << net->layers.at(0)->neurons.size() << std::endl;
+        //for (int i = 0; i < 10; i++)
+        //{
+
+
+
+        //    d->get_trening_data()->at(choose_num+i)->show_one_img();   // pokaznie liczby 
+        //    std::cout << "jest to liczba: ";
+        //    std::cout << (int)d->get_trening_data()->at(choose_num + i)->get_label() << std::endl; // pokacznie jego labela 
+        //    std::cout << std::endl;
+        //    std::vector<double> outputs = net->fprop(d->get_test_data()->at(69));
+        //    std::cout << " co dostajemy z funkcji fprop: " << std::endl;
+        //    int u = 0;
+        //    for (double d : outputs)
+        //    {
+        //        std::cout <<u<<" " << d << std::endl;
+        //        u++;
+        //    }
+        //   /* std::cout << std::endl;
+        //    for (int i = 0; i < net->layers.at(1)->neurons.size(); i++)
+        //    {
+        //        std::cout << net->layers.at(1)->neurons.at(i)->output << std::endl;
+        //    }*/
+        //}
 
         
 
@@ -220,7 +227,7 @@ int main()
         {
             std::cout << net->layers.at(1)->neurons.at(i)->output << std::endl;
         }*/
-        std::cout << "test2 performace" << net->test2() << std::endl;
+        //std::cout << "test2 performace" << net->test2() << std::endl;
         std::cout<<"validation performace" << net->validate() << std::endl;
         std::cout<<"test performance " << net->test() << std::endl;
  

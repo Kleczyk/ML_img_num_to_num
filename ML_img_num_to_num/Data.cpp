@@ -108,5 +108,6 @@ void Data::show_one_img()
 		
 	}
 	std::cout << std::endl;
-	std::cout << "to jest : " << (int)label << std::endl; 
+	std::cout << " ========== label: " << (int)label <<"===========" << std::endl;
+	
 }

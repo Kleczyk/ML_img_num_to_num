@@ -35,6 +35,11 @@ public:
     double test();
     double validate();
     double test2();
+    double validate2();
+    bool fit_example(Data* img);
+
+
+
     
 
 

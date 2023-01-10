@@ -250,6 +250,7 @@ double NeuronNetwork::test2()
             d->show_one_img();
             std::cout << " max " << max << std::endl;
             std::cout << " index " << index << std::endl;
+           
             std::cout << std::endl;
             int u = 0;
             for (double d : outputs)
@@ -257,6 +258,13 @@ double NeuronNetwork::test2()
                 std::cout << u << " " << d << std::endl;
                 u++;
             }
+            double sumOutputs = 0;
+            for (double s : outputs)
+            {
+                sumOutputs += s;
+
+            }
+            std::cout << " presition fit :  " << max / sumOutputs   << std::endl;
         }
         
 
@@ -264,6 +272,99 @@ double NeuronNetwork::test2()
     std::cout << "countr :" << counter << std::endl;
     double performance_test = counter / test_data->size();
      return performance_test;
+}
+
+double NeuronNetwork::validate2()
+{
+    double counter = 0;
+    for (int m = 0; m < test_data->size(); m++)
+    {
+        Data* d = test_data->at(m);
+        std::vector<double> outputs = fprop(d);
+        double max = outputs.at(0);
+        int index = 0;
+        for (int i = 0; i < outputs.size(); i++)
+        {
+            if (max < outputs.at(i))
+            {
+                max = outputs.at(i);
+                index = i;
+            }
+
+        }
+        if (index == d->get_label())
+        {
+            counter += 1.0;
+        }
+
+
+    }
+    double performance_test = counter / test_data->size();
+    return performance_test;
+    return 0.0;
+}
+
+bool NeuronNetwork::fit_example(Data* img)
+{
+
+    // caltulate max output and index_enum for max
+
+    std::vector<double> outputs = fprop(img); // calculate otuputs of network for Data
+
+    double max = outputs.at(0);
+    int index = 0;
+    for (int i = 0; i < outputs.size(); i++)
+    {
+        if (max < outputs.at(i))
+        {
+            max = outputs.at(i);
+            index = i;
+        }
+
+    }
+    
+    //show img
+    img->show_one_img();
+
+    std::cout  << std::endl;
+    std::cout << " max  output: " << max << std::endl;
+    std::cout << " fit index " << index << std::endl;
+    
+    // calculete tst precision and show weights 
+    double sumOutputs = 0;
+    for (double s : outputs)
+    {
+        sumOutputs += s;
+
+    }
+    std::cout << " sure  " << max/ sumOutputs << std::endl;
+
+    std::cout << std::endl;
+    int u = 0;
+    for (double d : outputs)
+    {
+        std::cout << "output: nr." << u << " = " << std::fixed << d << "\t\t sure = " << d / sumOutputs * 100 << "%" << std::endl;
+        u++;
+    }
+
+    // cheek fit num == label and show
+    bool validatiofit = false;
+    if (index == img->get_label())
+    {
+        std::cout << "validation fit : true  " << std::endl;
+        bool validatiofit = true;
+    }
+    else
+    {
+  
+         std::cout << "validation fit : false  " << std::endl;
+         bool validatiofit = false;
+    
+    }
+
+    
+    return validatiofit;
+
 }
 
 
