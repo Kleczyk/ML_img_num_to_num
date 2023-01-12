@@ -8,8 +8,7 @@
 #include <locale.h>
 #include "menu.h"
 #include <cstdint>
-#include <future>
-#include <Windows.h>
+
 
 const int BMP_HEADER_SIZE = 54;
 void readBmpHeader(const std::string& fileName)
@@ -109,7 +108,7 @@ void displayImage(const std::vector<uint8_t>& pixels, int width, int height)
 int main()
 {
     setlocale(LC_CTYPE, "Polish");
-
+   
     //menu m1;
     //m1.main_loop();
         
@@ -188,26 +187,14 @@ int main()
         net->set_validaction_data(d->get_validaction_data());
 
 
-        
-        std::future<int> result = std::async([net] {
-            net->train(7);
-            std::cout << "validation performace" << net->validate() << std::endl;
-            std::cout << "test performance " << net->test() << std::endl;
-            return 5; });
-        std::future<int> result2 = std::async([net] {
-            net->train(7);
-            Sleep(200);
-            
-         
-           
-            return 5; });
-
-        
+        net->train(5);
 
         for (int i = 0; i < 10; i++)
         {
             net->fit_example(d->get_test_data()->at(rand() % d->get_test_data()->size()));
         }
+        std::cout << "validation performace" << net->validate() << std::endl;
+        std::cout << "test performance " << net->test() << std::endl;
 
 
         //const int choose_num = 500;
@@ -243,8 +230,8 @@ int main()
             std::cout << net->layers.at(1)->neurons.at(i)->output << std::endl;
         }*/
         //std::cout << "test2 performace" << net->test2() << std::endl;
-        /*std::cout<<"validation performace" << net->validate() << std::endl;
-        std::cout<<"test performance " << net->test() << std::endl;*/
+        std::cout<<"validation performace" << net->validate() << std::endl;
+        std::cout<<"test performance " << net->test() << std::endl;
  
 
 
