@@ -41,7 +41,7 @@ public:
     double test2();
     double validate2();
     bool fit_example(Data* img);
-    bool fitRandom(Data_hendler* dh, int i)
+    void fitRandom(Data_hendler* dh, int i);
 
 
 

@@ -303,7 +303,7 @@ double NeuronNetwork::validate2()
     return performance_test;
     return 0.0;
 }
-bool NeuronNetwork::fitRandom(Data_hendler* dh, int i)
+void NeuronNetwork::fitRandom(Data_hendler* dh, int i)
 {
     fit_example(dh->get_test_data()->at(rand() % dh->get_test_data()->size()));
 }

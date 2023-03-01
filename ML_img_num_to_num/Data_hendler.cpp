@@ -23,9 +23,7 @@ Data_hendler::~Data_hendler()
 
 void Data_hendler::split_data(double TRAIN_SET_PERCENT=0.1, double TEST_SET_PERCENT = 0.01, double VALIDACTION_SET_PERCENT = 0.01)
 {
-	double TRAIN_SET_PERCENT;
-	double TEST_SET_PERCENT = 0.01;
-	double VALIDACTION_SET_PERCENT = 0.01;
+	
 
 	std::unordered_set<int> used_indxs;
 	int size_trening = data_array->size() * TRAIN_SET_PERCENT;
