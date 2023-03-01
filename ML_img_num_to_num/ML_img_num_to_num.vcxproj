@@ -145,7 +145,6 @@
     <ClInclude Include="InputLayer.h" />
     <ClInclude Include="JPEG_data_handler.h" />
     <ClInclude Include="Layer.h" />
-    <ClInclude Include="menu.h" />
     <ClInclude Include="MNIST_data_handler.h" />
     <ClInclude Include="NetParameters.h" />
     <ClInclude Include="Neuron.h" />
@@ -162,7 +161,6 @@
     <ClCompile Include="InputLayer.cpp" />
     <ClCompile Include="JPEG_data_handler.cpp" />
     <ClCompile Include="Layer.cpp" />
-    <ClCompile Include="menu.cpp" />
     <ClCompile Include="MNIST_data_handler.cpp" />
     <ClCompile Include="NetParameters.cpp" />
     <ClCompile Include="Neuron.cpp" />

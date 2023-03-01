@@ -1,12 +1,16 @@
 #pragma once
 #include "Data.h"
 #include "Data_hendler.h"
+#include "MNIST_data_handler.h"
+#include "CSV_data_handler.h"
 #include "CommonData.h"
 #include "Layer.h"
-#include "InputLayer.h"
-#include "HiddenLayer.h"
-#include "OutputLayer.h"
+#include "Neuron.h"
 #include <numeric>
+//#include "InputLayer.h"
+//#include "HiddenLayer.h"
+//#include "OutputLayer.h"=
+
 
 class NeuronNetwork : public CommonData
 {
@@ -21,7 +25,7 @@ public:
     
     
     
-    std::vector<double> fprop(Data* data);
+    std::vector<double> fprop(Data* data);//
     double activate(std::vector<double>, std::vector<double>); // dot product
     double transfer(double);
     double transferDerivative(double); // used for backprop
@@ -37,6 +41,7 @@ public:
     double test2();
     double validate2();
     bool fit_example(Data* img);
+    bool fitRandom(Data_hendler* dh, int i)
 
 
 

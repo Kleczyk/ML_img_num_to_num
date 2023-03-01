@@ -163,7 +163,7 @@ void MNIST_data_handler::read_feature_labels(std::string path)
 	std::cout << "sucessfull read and store labels " << data_array->size() << " imges" << std::endl;
 }
 
-void MNIST_data_handler::count_classes()
+void MNIST_data_handler::count_classes()// zlicza ró¿ne klasy sprawdzajac ich etykiety 
 {
 	int count = 0;
 

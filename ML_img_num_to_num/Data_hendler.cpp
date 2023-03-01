@@ -1,7 +1,8 @@
 #include "Data_hendler.h"
 #pragma warning(disable : 4996)
 
-Data_hendler::Data_hendler():feature_vector_size(0),num_class(10)
+Data_hendler::Data_hendler()
+	:feature_vector_size(0), num_class(10)
 {
 	data_array = new std::vector<Data*>;
 	test_data = new std::vector<Data*>;
@@ -20,8 +21,12 @@ Data_hendler::~Data_hendler()
 
 
 
-void Data_hendler::split_data()
+void Data_hendler::split_data(double TRAIN_SET_PERCENT=0.1, double TEST_SET_PERCENT = 0.01, double VALIDACTION_SET_PERCENT = 0.01)
 {
+	double TRAIN_SET_PERCENT;
+	double TEST_SET_PERCENT = 0.01;
+	double VALIDACTION_SET_PERCENT = 0.01;
+
 	std::unordered_set<int> used_indxs;
 	int size_trening = data_array->size() * TRAIN_SET_PERCENT;
 	int size_test = data_array->size() * TEST_SET_PERCENT;

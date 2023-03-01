@@ -17,16 +17,13 @@ protected:
 
 	int num_class;
 	int feature_vector_size;
-	const double TRAIN_SET_PERCENT = 0.1;
-	const double TEST_SET_PERCENT = 0.01;
-	const double VALIDACTION_SET_PERCENT = 0.01;
 public:
 	Data_hendler();
 	~Data_hendler();
 	virtual void read_feature_vector(const std::string& path)=0;
 	virtual void read_feature_labels(std::string path)=0;
 	virtual void count_classes()=0;
-	void split_data();
+	void split_data(double, double, double);
 	void show_img();
 	int generate_random_number(int lowerBound, int upperBound);
 	void make_nomalized_data();

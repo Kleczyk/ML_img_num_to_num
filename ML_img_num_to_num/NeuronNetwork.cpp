@@ -52,7 +52,7 @@ double NeuronNetwork::transferDerivative(double output)     //f'(x) = f(x)(1-f(x
     return output = output * (1 - output);
 }
 
-std::vector<double> NeuronNetwork::fprop(Data* data)
+std::vector<double> NeuronNetwork::fprop(Data* data)// 
 {
     std::vector<double> inputs = *data->get_nomalized_feature_vector();
     for (int i = 0; i < layers.size(); i++)
@@ -303,13 +303,15 @@ double NeuronNetwork::validate2()
     return performance_test;
     return 0.0;
 }
-
+bool NeuronNetwork::fitRandom(Data_hendler* dh, int i)
+{
+    fit_example(dh->get_test_data()->at(rand() % dh->get_test_data()->size()));
+}
 bool NeuronNetwork::fit_example(Data* img)
 {
 
-    // caltulate max output and index_enum for max
-
-    std::vector<double> outputs = fprop(img); // calculate otuputs of network for Data
+ 
+    std::vector<double> outputs = fprop(img); 
 
     double max = outputs.at(0);
     int index = 0;

@@ -6,8 +6,8 @@
 
 class Data
 {
-	std::vector<uint8_t>* feature_vector;
-	std::vector<double>* nomalized_feature_vector;
+	std::vector<uint8_t>* feature_vector; //kazdy piksel ma moze miec wartosc od 0 do 255 w celu optmalicazcji u¿wam 8 bitowego inta 
+	std::vector<double>* nomalized_feature_vector;// feature_vector po znormalizowaniu 
 	std::vector<int>* class_vector;
 	uint8_t label;
 	int enum_label;
