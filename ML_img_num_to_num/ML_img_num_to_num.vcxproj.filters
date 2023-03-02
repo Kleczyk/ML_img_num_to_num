@@ -13,102 +13,114 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Pliki nagłówkowe\layers_headers">
+    <Filter Include="Pliki nagłówkowe\preperData">
+      <UniqueIdentifier>{515eab79-2926-4e57-995f-ae784b858d44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\Network">
+      <UniqueIdentifier>{8944f760-456c-4d65-a5c8-a54ccfac58cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\Network\layers_headers">
       <UniqueIdentifier>{2aaa0dbd-a20c-45b6-8bec-484d714ad076}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Pliki źródłowe\Layers_cpp">
+    <Filter Include="Pliki źródłowe\preperData_src">
+      <UniqueIdentifier>{2a6a20c2-2010-49b4-a1e8-51acd75a5f83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Network_src">
+      <UniqueIdentifier>{f3991d27-bcb2-4ef0-9064-7c297503f657}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Network_src\Layers_src">
       <UniqueIdentifier>{09f89630-0a45-4337-a76a-53f3851ef8d5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Data.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="Neuron.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="NeuronNetwork.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
     <ClInclude Include="HiddenLayer.h">
-      <Filter>Pliki nagłówkowe\layers_headers</Filter>
+      <Filter>Pliki nagłówkowe\Network\layers_headers</Filter>
     </ClInclude>
     <ClInclude Include="InputLayer.h">
-      <Filter>Pliki nagłówkowe\layers_headers</Filter>
+      <Filter>Pliki nagłówkowe\Network\layers_headers</Filter>
     </ClInclude>
     <ClInclude Include="OutputLayer.h">
-      <Filter>Pliki nagłówkowe\layers_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="CommonData.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="Data_hendler.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="Layer.h">
-      <Filter>Pliki nagłówkowe\layers_headers</Filter>
-    </ClInclude>
-    <ClInclude Include="CSV_data_handler.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="MNIST_data_handler.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="NetParameters.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
-    <ClInclude Include="JPEG_data_handler.h">
-      <Filter>Pliki nagłówkowe</Filter>
+      <Filter>Pliki nagłówkowe\Network\layers_headers</Filter>
     </ClInclude>
     <ClInclude Include="BMP_data_handler.h">
-      <Filter>Pliki nagłówkowe</Filter>
+      <Filter>Pliki nagłówkowe\preperData</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonData.h">
+      <Filter>Pliki nagłówkowe\preperData</Filter>
+    </ClInclude>
+    <ClInclude Include="CSV_data_handler.h">
+      <Filter>Pliki nagłówkowe\preperData</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.h">
+      <Filter>Pliki nagłówkowe\preperData</Filter>
+    </ClInclude>
+    <ClInclude Include="Data_hendler.h">
+      <Filter>Pliki nagłówkowe\preperData</Filter>
+    </ClInclude>
+    <ClInclude Include="JPEG_data_handler.h">
+      <Filter>Pliki nagłówkowe\preperData</Filter>
+    </ClInclude>
+    <ClInclude Include="MNIST_data_handler.h">
+      <Filter>Pliki nagłówkowe\preperData</Filter>
+    </ClInclude>
+    <ClInclude Include="NeuronNetwork.h">
+      <Filter>Pliki nagłówkowe\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Neuron.h">
+      <Filter>Pliki nagłówkowe\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="NetParameters.h">
+      <Filter>Pliki nagłówkowe\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Layer.h">
+      <Filter>Pliki nagłówkowe\Network</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Data.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="Data_hendler.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
     <ClCompile Include="start.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="Neuron.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="NeuronNetwork.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
     <ClCompile Include="OutputLayer.cpp">
-      <Filter>Pliki źródłowe\Layers_cpp</Filter>
+      <Filter>Pliki źródłowe\Network_src\Layers_src</Filter>
     </ClCompile>
     <ClCompile Include="InputLayer.cpp">
-      <Filter>Pliki źródłowe\Layers_cpp</Filter>
+      <Filter>Pliki źródłowe\Network_src\Layers_src</Filter>
     </ClCompile>
     <ClCompile Include="HiddenLayer.cpp">
-      <Filter>Pliki źródłowe\Layers_cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Layer.cpp">
-      <Filter>Pliki źródłowe\Layers_cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="CommonData.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="CSV_data_handler.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="MNIST_data_handler.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="NetParameters.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="JPEG_data_handler.cpp">
-      <Filter>Pliki źródłowe</Filter>
+      <Filter>Pliki źródłowe\Network_src\Layers_src</Filter>
     </ClCompile>
     <ClCompile Include="BMP_data_handler.cpp">
-      <Filter>Pliki źródłowe</Filter>
+      <Filter>Pliki źródłowe\preperData_src</Filter>
+    </ClCompile>
+    <ClCompile Include="CommonData.cpp">
+      <Filter>Pliki źródłowe\preperData_src</Filter>
+    </ClCompile>
+    <ClCompile Include="CSV_data_handler.cpp">
+      <Filter>Pliki źródłowe\preperData_src</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.cpp">
+      <Filter>Pliki źródłowe\preperData_src</Filter>
+    </ClCompile>
+    <ClCompile Include="Data_hendler.cpp">
+      <Filter>Pliki źródłowe\preperData_src</Filter>
+    </ClCompile>
+    <ClCompile Include="JPEG_data_handler.cpp">
+      <Filter>Pliki źródłowe\preperData_src</Filter>
+    </ClCompile>
+    <ClCompile Include="MNIST_data_handler.cpp">
+      <Filter>Pliki źródłowe\preperData_src</Filter>
+    </ClCompile>
+    <ClCompile Include="NetParameters.cpp">
+      <Filter>Pliki źródłowe\Network_src</Filter>
+    </ClCompile>
+    <ClCompile Include="NeuronNetwork.cpp">
+      <Filter>Pliki źródłowe\Network_src</Filter>
+    </ClCompile>
+    <ClCompile Include="Neuron.cpp">
+      <Filter>Pliki źródłowe\Network_src</Filter>
+    </ClCompile>
+    <ClCompile Include="Layer.cpp">
+      <Filter>Pliki źródłowe\Network_src</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

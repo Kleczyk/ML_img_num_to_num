@@ -24,6 +24,7 @@
     <ProjectGuid>{c634f595-fd9b-4a4f-805a-623f6b7ea13e}</ProjectGuid>
     <RootNamespace>MLimgnumtonum</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>NeuronNet</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

@@ -1,3 +1,19 @@
+/*
+Program implementuj¹cy sieæ neuronw¹ typu Perceptron wielowarstwowy.
+Bibloteka ta umo¿liwia trenowanie oraz przygowtowanie danych dla sieci
+funkcj¹ aktywacji jest  funkcja sigmoidalna unipolarna
+zaimplementowane s¹ sposoby trenowania takiej sieci na zbiorze MNIST s¹ to obrazki 28x28 odrêdznie pisanych cyfrach od 0 do 9 zaetykietowaanych
+i skali szaroœci od 0 do 255.
+
+program ma mo¿liwoœæ obs³ógi innch danych wystarczy odpowiednio je przekowertowaæ do obiektów Data plik Data.h
+
+©Daniel Kleczyñski Student politechniki Rzeszowskiej 
+*/
+
+
+
+
+
 
 #include "NeuronNetwork.h"
 
