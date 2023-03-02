@@ -30,8 +30,8 @@ int main()
 
 
 	d = &m;// wskaŸnik polimorficzny pokazuje ze bêd¹ to dane Mnist
-	d->read_feature_vector("d:\\prz\\sem_3\\c++\\ml_proj\\ml_img_num_to_num\\train-images-idx3-ubyte.bin");//odczyt i zapis danych (obrazków)
-	d->read_feature_labels("d:\\prz\\sem_3\\c++\\ml_proj\\ml_img_num_to_num\\train-labels.idx1-ubyte");// dopisanie do obrazków etykiet 
+	d->read_feature_vector("d:\\prz\\sem_3\\c++\\ml_proj\\ml_img_num_to_num\\Data\\train-images-idx3-ubyte.bin");//odczyt i zapis danych (obrazków)
+	d->read_feature_labels("d:\\prz\\sem_3\\c++\\ml_proj\\ml_img_num_to_num\\Data\\train-labels.idx1-ubyte");// dopisanie do obrazków etykiet 
     d->make_nomalized_data();// normalizacja danych
     d->split_data(0.2,0.1,0.1);//podziaa³ daniych na treningowe testowe walidacyjne jako paramatry ustalamy jaka czêœæ dancy ma zostaæ przydzielona ka¿dym danym z osobna
 	d->count_classes();// sprawdzanie ile mamy ró¿nych klas/ 
